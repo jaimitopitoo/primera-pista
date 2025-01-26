@@ -21,22 +21,17 @@
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            width: 80%;  /* Aumentamos el ancho */
-            max-width: 900px;  /* También aumentamos el ancho máximo */
+            width: 95%;
+            max-width: 90%; /* Now takes most of the viewport width */
         }
         h1 {
-            font-size: 1.5rem;
+            font-size: 2rem;
             color: #444;
         }
-        textarea {
-            width: 100%;
-            height: 100px;
-            margin-top: 10px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            resize: none;
+        p {
+            word-wrap: break-word; /* Ensure long text wraps within the container */
+            text-align: left;
+            margin: 10px 0;
         }
         button {
             margin-top: 10px;
@@ -58,29 +53,15 @@
             padding: 10px;
             border-radius: 8px;
             border: 1px solid #ddd;
+            word-wrap: break-word; /* Ensure long output wraps properly */
+            text-align: left;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>LA PRIMERA PISTA ES ESTA:</h1>
-        <p>Ve hacia la puerta, sal y gira a la derecha hasta el ascensor. Llama al ascensor y vete a la planta 0. Cuando salgas gira 90 grados a la derecha y avanza hasta la salida. Sal y avanza recto. Gira a tu izquierda hasta los asientos flotantes y justo antes, gira a la derecha y entra en el bloque. Baja por el ascensor hasta la planta -2.  Dirígete hacia la recepción y pide los palos de billar. Ya sabes hacia donde tenemos que ir ahora ;)</p> 
-        <textarea id="binaryInput" placeholder="Introduce el binario aquí..."></textarea>
-        <button onclick="convertBinary()">Convertir a texto</button>
-        <div id="output" class="output"></div>
+        <p>Ve hacia la puerta, sal y gira a la derecha hasta el ascensor. Llama al ascensor y vete a la planta 0. Cuando salgas gira 90 grados a la derecha y avanza hasta la salida. Sal y avanza recto. Gira a tu izquierda hasta los asientos flotantes y justo antes, gira a la derecha y entra en el bloque. Baja por el ascensor hasta la planta -2.  Dirígete hacia la recepción y pide los palos de billar. Ya sabes hacia donde tenemos que ir ahora ;)</p>
     </div>
-    <script>
-        function convertBinary() {
-            const binaryInput = document.getElementById('binaryInput').value;
-            const outputDiv = document.getElementById('output');
-            try {
-                const binaryArray = binaryInput.split(' ');
-                const text = binaryArray.map(bin => String.fromCharCode(parseInt(bin, 2))).join('');
-                outputDiv.textContent = text;
-            } catch (error) {
-                outputDiv.textContent = 'Error: Asegúrate de que el formato binario es correcto.';
-            }
-        }
-    </script>
 </body>
 </html>
