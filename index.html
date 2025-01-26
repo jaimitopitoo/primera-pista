@@ -27,6 +27,12 @@
         h1 {
             font-size: 1.5rem;
             color: #444;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 15px;
         }
         textarea {
             width: 100%;
@@ -58,6 +64,8 @@
             padding: 10px;
             border-radius: 8px;
             border: 1px solid #ddd;
+            white-space: pre-wrap; /* Permite mostrar texto largo en varias líneas */
+            font-family: monospace;
         }
     </style>
 </head>
@@ -75,12 +83,25 @@
             const binaryInput = document.getElementById('binaryInput').value;
             const outputDiv = document.getElementById('output');
 
+            // Validar si hay contenido
+            if (!binaryInput.trim()) {
+                outputDiv.textContent = 'Por favor, introduce texto en formato binario.';
+                return;
+            }
+
             try {
-                const binaryArray = binaryInput.split(' ');
-                const text = binaryArray.map(bin => String.fromCharCode(parseInt(bin, 2))).join('');
-                outputDiv.textContent = text;
+                // Dividir en palabras y validar formato binario
+                const binaryArray = binaryInput.trim().split(/\s+/); // Divide por espacios múltiples
+                const text = binaryArray.map(bin => {
+                    if (!/^[01]{8}$/.test(bin)) {
+                        throw new Error(`El binario "${bin}" no tiene un formato válido.`);
+                    }
+                    return String.fromCharCode(parseInt(bin, 2));
+                }).join('');
+                
+                outputDiv.textContent = text; // Mostrar texto convertido
             } catch (error) {
-                outputDiv.textContent = 'Error: Asegúrate de que el formato binario es correcto.';
+                outputDiv.textContent = `Error: ${error.message}`;
             }
         }
     </script>
